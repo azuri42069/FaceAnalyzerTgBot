@@ -19,18 +19,21 @@ def face_analyze(message):
             new_file.write(downloaded_file)
         
         result_dict = DeepFace.analyze(img_path="user_media/image.jpg", actions=['age', 'gender', 'race', 'emotion'])
-        # age_level = result_dict[0]['age'][1]
+        age_level = result_dict[0]['age']
+        dom_gn = result_dict[0]['dominant_gender']
+        #dom_gn_level = result_dict[0]['gender'][dom_gn]
+        dom_rc = result_dict[0]['dominant_race']
+        #dom_rc_level = result_dict[0]['race'][dom_rc]
         dom_em = result_dict[0]['dominant_emotion']
-        dom_em_level = result_dict[0]['emotion'][dom_em]
-        # msg1 = f"% Возможный возраст: {age_level}"
-        msg2 = f"% Доминантной эмоции: {dom_em_level}"
-        print(result_dict)
-        # bot.send_message(message.chat.id, msg1)
-        bot.send_message(message.chat.id, msg2)
+        #dom_em_level = result_dict[0]['emotion'][dom_em]
+        bot.send_message(message.chat.id, f"👶 Предположительный возраст: {age_level}")
+        bot.send_message(message.chat.id, f"👥 Предположительный пол: {dom_gn}")
+        bot.send_message(message.chat.id, f"👩🏻👦🏾Предположительная paca: {dom_rc}")
+        bot.send_message(message.chat.id, f"🤯 Предположительная эмоция: {dom_em}")
     except ValueError:
-        bot.send_message(message.chat.id, "Лицо не распознано")
+        bot.send_message(message.chat.id, "😖 Лицо не распознано")
     except:
-        bot.send_message(message.chat.id, "Неизвестная Ошибка (420)")
+        bot.send_message(message.chat.id, "☠️ Неизвестная Ошибка (420)")
          
     
 @bot.message_handler(content_types = ['text'])
