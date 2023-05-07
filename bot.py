@@ -1,6 +1,7 @@
 import telebot
 from deepface import DeepFace
 import configparser
+import random
 
 config = configparser.ConfigParser() 
 config.read("settings.ini")  
@@ -26,7 +27,8 @@ def face_analyze(message):
         #dom_rc_level = result_dict[0]['race'][dom_rc]
         dom_em = result_dict[0]['dominant_emotion']
         #dom_em_level = result_dict[0]['emotion'][dom_em]
-        bot.send_message(message.chat.id, f"👶 Предположительный возраст: {age_level}")
+        real_age = int(age_level) - random.randint(14, 25)
+        bot.send_message(message.chat.id, f"👶 Предположительный возраст: {real_age}-{age_level}")
         bot.send_message(message.chat.id, f"👥 Предположительный пол: {dom_gn}")
         bot.send_message(message.chat.id, f"👩🏻👦🏾Предположительная paca: {dom_rc}")
         bot.send_message(message.chat.id, f"🤯 Предположительная эмоция: {dom_em}")
