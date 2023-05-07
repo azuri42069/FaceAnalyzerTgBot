@@ -15,10 +15,10 @@ def face_analyze(message):
         fileID = message.photo[-1].file_id   
         file_info = bot.get_file(fileID)
         downloaded_file = bot.download_file(file_info.file_path)
-        with open("user_media/image.jpg", 'wb') as new_file:
+        with open("image.jpg", 'wb') as new_file:
             new_file.write(downloaded_file)
         
-        result_dict = DeepFace.analyze(img_path="user_media/image.jpg", actions=['age', 'gender', 'race', 'emotion'])
+        result_dict = DeepFace.analyze(img_path="image.jpg", actions=['age', 'gender', 'race', 'emotion'])
         age_level = result_dict[0]['age']
         dom_gn = result_dict[0]['dominant_gender']
         #dom_gn_level = result_dict[0]['gender'][dom_gn]

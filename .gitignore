@@ -14,3 +14,4 @@ pom.xml.asc
 .cpcache/
 *.ini
 user_media/image.jpg
+image.jpg
