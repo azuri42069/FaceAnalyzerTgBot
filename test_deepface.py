@@ -1,20 +1,26 @@
 from deepface import DeepFace
+import json
 
 def face_analyze():
     try:
         result_dict = DeepFace.analyze(img_path='user_media/image.jpg', actions=['age', 'gender', 'race', 'emotion'])
-        print(result_dict)
         print(" ")
-        age_level = result_dict[0]['age'][1]
+        age_level = result_dict[0]['age']
+        dom_gn = result_dict[0]['dominant_gender']
+        dom_gn_level = result_dict[0]['gender'][dom_gn]
+        dom_rc = result_dict[0]['dominant_race']
+        dom_rc_level = result_dict[0]['race'][dom_rc]
         dom_em = result_dict[0]['dominant_emotion']
         dom_em_level = result_dict[0]['emotion'][dom_em]
-        msg1 = f"% Возможный возраст: {age_level}"
-        msg2 = f"% Доминантной эмоции: {dom_em_level}"
-        print(msg1)
-        print(msg2)
+        print(f"Предположительный возраст: {age_level}")
+        print(f"Предположительный пол: {dom_gn_level}")
+        print(f"Предположительная paca: {dom_rc_level}")
+        print(f"Предположительная эмоция: {dom_em_level}")
 
-    except Exception as _ex:
-        return _ex
+    except ValueError:
+        print("error")
+    except:
+        print("error x2")
 
     
 def main():
