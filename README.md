@@ -14,6 +14,6 @@ Licensed under either of
 
 at your discretion.
 
-## API
+## API & Libs
 + Telegram Bot API
 + DeepFace AI
