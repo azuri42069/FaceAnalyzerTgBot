@@ -17,3 +17,6 @@ at your discretion.
 ## API & Libs
 + Telegram Bot API
 + DeepFace AI
+
+## Also
+https://github.com/feodrjob/cityheroes_fk
