@@ -2,6 +2,7 @@ import telebot
 from deepface import DeepFace
 import configparser
 import random
+import math
 
 config = configparser.ConfigParser()                   #  api key parseng
 config.read("settings.ini")  
@@ -22,16 +23,21 @@ def face_analyze(message):
         result_dict = DeepFace.analyze(img_path="image.jpg", actions=['age', 'gender', 'race', 'emotion'])       # main method
         age_level = result_dict[0]['age']
         dom_gn = result_dict[0]['dominant_gender']
-        #dom_gn_level = result_dict[0]['gender'][dom_gn]
+        dom_gn_level = result_dict[0]['gender'][dom_gn]
         dom_rc = result_dict[0]['dominant_race']                        # rzecz pospolitaia (раздел)
-        #dom_rc_level = result_dict[0]['race'][dom_rc]
+        dom_rc_level = result_dict[0]['race'][dom_rc]
         dom_em = result_dict[0]['dominant_emotion']
-        #dom_em_level = result_dict[0]['emotion'][dom_em]
+        dom_em_level = result_dict[0]['emotion'][dom_em]
         real_age = int(age_level) - random.randint(14, 25)                                           # "real age"
-        bot.send_message(message.chat.id, f"👶 Предположительный возраст: {real_age}-{age_level}")
+        GETREAL_age = math.fabs(real_age)  # fix "-1 age"
+        bot.send_message(message.chat.id, f"👶 Предположительный возраст: {GETREAL_age}-{age_level}")
         bot.send_message(message.chat.id, f"👥 Предположительный пол: {dom_gn}")
         bot.send_message(message.chat.id, f"👩🏻👦🏾Предположительная paca: {dom_rc}")
         bot.send_message(message.chat.id, f"🤯 Предположительная эмоция: {dom_em}")
+        if (dom_em == 'neutral'):
+            bot.send_message(message.chat.id, "Ответственный")
+        else:
+            bot.send_message(message.chat.id, "Безответственный")
     except ValueError:
         bot.send_message(message.chat.id, "😖 Лицо не распознано")
     except:
