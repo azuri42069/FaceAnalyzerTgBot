@@ -35,9 +35,9 @@ def face_analyze(message):
         bot.send_message(message.chat.id, f"👩🏻👦🏾Предположительная paca: {dom_rc}")
         bot.send_message(message.chat.id, f"🤯 Предположительная эмоция: {dom_em}")
         if (dom_em == 'neutral'):
-            bot.send_message(message.chat.id, "Ответственный")
+            bot.send_message(message.chat.id, "🤓 Ответственный")
         else:
-            bot.send_message(message.chat.id, "Безответственный")
+            bot.send_message(message.chat.id, "🤡 Безответственный")
     except ValueError:
         bot.send_message(message.chat.id, "😖 Лицо не распознано")
     except:
