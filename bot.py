@@ -29,7 +29,7 @@ def face_analyze(message):
         dom_em = result_dict[0]['dominant_emotion']
         dom_em_level = result_dict[0]['emotion'][dom_em]
         real_age = int(age_level) - random.randint(14, 25)                                           # "real age"
-        GETREAL_age = math.fabs(real_age)  # fix "-1 age"
+        GETREAL_age = int(math.fabs(real_age))  # fix "-1 age"
         bot.send_message(message.chat.id, f"👶 Предположительный возраст: {GETREAL_age}-{age_level}")
         bot.send_message(message.chat.id, f"👥 Предположительный пол: {dom_gn}")
         bot.send_message(message.chat.id, f"👩🏻👦🏾Предположительная paca: {dom_rc}")
