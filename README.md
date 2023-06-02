@@ -4,7 +4,7 @@
   <p>
     <strong>Face analyzer for its alleged characteristics in the form of a telegram bot</strong>
   </p>
-  <strong>⚠️ The project is still in early development, expect bugs, safety issues, and things that don't work ⚠️</strong>
+  <strong>⚠️ The project is still in early development and is not currently hosted. ⚠️</strong>
 </div>
 
 ## License
